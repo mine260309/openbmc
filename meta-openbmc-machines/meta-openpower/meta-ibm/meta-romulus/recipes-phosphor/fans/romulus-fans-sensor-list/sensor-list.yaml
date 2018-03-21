@@ -1,0 +1,25 @@
+fan0:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan0
+  writepath: /sys/devices/platform/ahb/ahb:apb/1e786000.pwm-tacho-controller/hwmon/**/pwm1
+  min: 0
+  max: 255
+fan1:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan1
+  writepath: /sys/devices/platform/ahb/ahb:apb/1e786000.pwm-tacho-controller/hwmon/**/pwm2
+  min: 0
+  max: 255
+fan2:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan2
+  writepath:
+  min: 0
+  max: 0
+outlet:
+  type: temp
+  readpath: /xyz/openbmc_project/sensors/temperature/outlet
+  writepath:
+  min: 0
+  max: 0
+  timeout: 600

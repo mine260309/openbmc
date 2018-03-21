@@ -1,14 +1,14 @@
 HOMEPAGE = "github.com/openbmc/phosphor-pid-control"
 
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=dc7f21ccff0f672f2a7cd6f412ae627d"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 
 SUMMARY = "Phosphor PID Fan Control"
 DESCRIPTION = "Fan Control"
 PR = "r1"
 
 SRC_URI = "git://github.com/openbmc/phosphor-pid-control"
-SRCREV = "7494ce0bdd5f707b8e07d907e2202df0f3426da0"
+SRCREV = "5f02ad282f52e5ff045bba941acc9a318ebfff64"
 S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig
@@ -35,7 +35,7 @@ DEPENDS += "virtual/phosphor-fans-sensor-inventory"
 # We depend on this to be built first so we can build our providers.
 DEPENDS += "phosphor-ipmi-host"
 
-RDEPENDS_${PN} += "sdbusplus phosphor-dbus-interfaces"
+RDEPENDS_${PN} += "sdbusplus phosphor-dbus-interfaces bash"
 
 FILES_${PN} = "${sbindir}/swampd ${sbindir}/setsensor"
 FILES_${PN}_append = " ${libdir}/ipmid-providers/lib*${SOLIBS}"
@@ -46,7 +46,7 @@ FILES_${PN}-dev_append = " ${libdir}/ipmid-providers/lib*${SOLIBSDEV} ${libdir}/
 EXTRA_OECONF = "SENSOR_YAML_GEN=${STAGING_DIR_NATIVE}${sensor_datadir}/sensor-list.yaml \
                 PID_YAML_GEN=${STAGING_DIR_NATIVE}${sensor_datadir}/pid-list.yaml"
 
-HOSTIPMI_PROVIDER_LIBRARY += "libmanualcmds.so"
+#HOSTIPMI_PROVIDER_LIBRARY += "libmanualcmds.so"
 
 # Install the tuning test script
 RDEPEND_${PN} += " bash"

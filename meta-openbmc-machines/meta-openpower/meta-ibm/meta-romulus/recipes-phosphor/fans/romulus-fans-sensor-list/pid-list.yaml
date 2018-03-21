@@ -1,0 +1,59 @@
+0x01:
+  fan0-2:
+    type: fan
+    inputs:
+      fan0
+      fan2
+    set-point: 90.0
+    pid:
+      sampleperiod: 0.5
+      p_coefficient: 0.0
+      i_coefficient: 0.0
+      ff_off_coefficient: 0.0
+      ff_gain_coefficient: 0.0143
+      i_limit:
+        min: 0.0
+        max: 0.0
+      out_limit:
+        min: 30.0
+        max: 100.0
+      slew_neg: 0.0
+      slew_pos: 0.0
+  fan1:
+    type: fan
+    inputs:
+      fan1
+    set-point: 90.0
+    pid:
+      sampleperiod: 0.5
+      p_coefficient: 0.0
+      i_coefficient: 0.0
+      ff_off_coefficient: 0.0
+      ff_gain_coefficient: 0.0143
+      i_limit:
+        min: 0.0
+        max: 0.0
+      out_limit:
+        min: 30.0
+        max: 100.0
+      slew_neg: 0.0
+      slew_pos: 0.0
+  temppid0:
+    type: temp
+    inputs:
+      outlet
+    set-point: 45
+    pid:
+      sampleperiod: 1
+      p_coefficient: -500.0
+      i_coefficient: -15.0
+      ff_off_coefficient: 0.0
+      ff_gain_coefficient: 0.0
+      i_limit:
+        min: 3000
+        max: 7000
+      out_limit:
+        min: 3000
+        max: 7000
+      slew_neg: -100.0
+      slew_pos: 0.0
