@@ -1,0 +1,54 @@
+fan1:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan1
+  writepath: /sys/devices/platform/1e786000.pwm-tacho-controller/hwmon/**/pwm1
+  min: 0
+  max: 255
+fan2:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan2
+  writepath: /sys/devices/platform/1e786000.pwm-tacho-controller/hwmon/**/pwm2
+  min: 0
+  max: 255
+fan3:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan3
+  writepath: /sys/devices/platform/1e786000.pwm-tacho-controller/hwmon/**/pwm3
+  min: 0
+  max: 255
+fan4:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan4
+  writepath: /sys/devices/platform/1e786000.pwm-tacho-controller/hwmon/**/pwm4
+  min: 0
+  max: 255
+fan5:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan5
+  writepath:
+  min: 0
+  max: 0
+fan6:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan6
+  writepath:
+  min: 0
+  max: 0
+fan7:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan7
+  writepath:
+  min: 0
+  max: 0
+fan8:
+  type: fan
+  readpath: /xyz/openbmc_project/sensors/fan_tach/fan8
+  writepath:
+  min: 0
+  max: 0
+fleeting0:
+  type: margin
+  readpath: /xyz/openbmc_project/extsensors/margin/fleeting0
+  writepath:
+  min: 0
+  max: 0

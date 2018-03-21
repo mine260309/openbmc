@@ -1,0 +1,25 @@
+[Unit]
+Description=Phosphor-Pid-Control Margin-based Fan Control Daemon
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan8.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan8.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan7.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan7.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan6.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan6.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan5.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan5.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan4.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan4.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan3.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan3.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan2.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan2.service
+Wants=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan1.service
+After=mapper-wait@-xyz-openbmc_project-sensors-fan_tach-fan1.service
+
+[Service]
+Restart=always
+ExecStart={sbindir}/swampd
+
+[Install]
+WantedBy={SYSTEMD_DEFAULT_TARGET}
