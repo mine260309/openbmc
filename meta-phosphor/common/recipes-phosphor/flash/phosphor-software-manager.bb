@@ -53,6 +53,7 @@ RDEPENDS_${PN}-updater += " \
     sdbusplus \
     virtual-obmc-image-manager \
     bash \
+    mtd-utils-ubifs \
 "
 
 RPROVIDES_${PN}-version += " \
