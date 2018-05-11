@@ -1,0 +1,50 @@
+diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-flash-layout-ubi-singlechip.dtsi b/arch/arm/boot/dts/aspeed-bmc-opp-flash-layout-ubi-singlechip.dtsi
+new file mode 100644
+index 0000000..15b5eed
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-opp-flash-layout-ubi-singlechip.dtsi
+@@ -0,0 +1,30 @@
++		label = "bmc";
++		partitions {
++				#address-cells = < 1 >;
++				#size-cells = < 1 >;
++				compatible = "fixed-partitions";
++				u-boot@0 {
++					reg = < 0 0x60000 >;
++					label = "u-boot";
++				};
++				u-boot-env@60000 {
++					reg = < 0x60000 0x20000 >;
++					label = "u-boot-env";
++				};
++				obmc-ubi@80000 {
++					reg = < 0x80000 0x1F80000 >;
++					label = "obmc-ubi";
++				};
++				u-boot@2000000 {
++					reg = < 0x2000000 0x60000 >;
++					label = "alt-u-boot";
++				};
++				u-boot-env@2060000 {
++					reg = < 0x2060000 0x20000 >;
++					label = "alt-u-boot-env";
++				};
++				obmc-ubi@2080000 {
++					reg = < 0x2080000 0x1F80000 >;
++					label = "alt-obmc-ubi";
++				};
++		};
+diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts b/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts
+index d746e56..ce80a5d 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts
+@@ -92,8 +92,7 @@
+ 		status = "okay";
+ 		m25p,fast-read;
+ 		label = "bmc";
+-#include "openbmc-flash-layout.dtsi"
+-
++#include "aspeed-bmc-opp-flash-layout-ubi-singlechip.dtsi"
+ 	};
+ };
+ 
