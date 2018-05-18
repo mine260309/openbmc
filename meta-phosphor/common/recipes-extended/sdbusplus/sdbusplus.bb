@@ -35,7 +35,7 @@ DEPENDS_append_class-native = " \
         python-pyyaml-native \
         "
 
-SRC_URI += "git://github.com/mine260309/sdbusplus;branch=dev-gmock-patrick;"
+SRC_URI += "git://github.com/mine260309/sdbusplus;branch=dev-gmock-patrick-2;"
 SRCREV = "${AUTOREV}"
 
 PACKAGECONFIG ??= "libsdbusplus transaction"
