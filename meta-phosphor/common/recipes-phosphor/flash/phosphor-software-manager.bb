@@ -24,6 +24,8 @@ DBUS_PACKAGES = "${SOFTWARE_MGR_PACKAGES}"
 SYSTEMD_PACKAGES = ""
 
 PACKAGECONFIG[verify_signature] = "--enable-verify_signature,--disable-verify_signature"
+PACKAGECONFIG[ubifs_layout] = "--enable-ubifs_layout"
+PACKAGECONFIG_append_df-obmc-ubi-fs = " ubifs_layout"
 
 inherit autotools pkgconfig
 inherit obmc-phosphor-dbus-service
@@ -74,16 +76,19 @@ DBUS_SERVICE_${PN}-download-mgr += "xyz.openbmc_project.Software.Download.servic
 DBUS_SERVICE_${PN}-updater += "xyz.openbmc_project.Software.BMC.Updater.service"
 
 SYSTEMD_SERVICE_${PN}-updater += " \
+    usr-local.mount \
+    reboot-guard-enable.service \
+    reboot-guard-disable.service \
+    "
+
+SYSTEMD_SERVICE_${PN}-updater_append_df-obmc-ubi-fs += " \
     obmc-flash-bmc-ubirw.service \
     obmc-flash-bmc-ubiro@.service \
     obmc-flash-bmc-setenv@.service \
     obmc-flash-bmc-ubirw-remove.service \
     obmc-flash-bmc-ubiro-remove@.service \
-    usr-local.mount \
     obmc-flash-bmc-ubiremount.service \
     obmc-flash-bmc-updateubootvars@.service \
-    reboot-guard-enable.service \
-    reboot-guard-disable.service \
     obmc-flash-bmc-cleanup.service \
     obmc-flash-bmc-mirroruboot.service \
     "
@@ -93,13 +98,13 @@ BMC_RW_MTD ??= "bmc"
 BMC_RO_MTD ??= "bmc"
 BMC_KERNEL_MTD ??= "bmc"
 BMC_RW_SIZE ??= "0x600000"
-SYSTEMD_SUBSTITUTIONS += "RW_MTD:${BMC_RW_MTD}:obmc-flash-bmc-ubirw.service"
-SYSTEMD_SUBSTITUTIONS += "RO_MTD:${BMC_RO_MTD}:obmc-flash-bmc-ubiro@.service"
-SYSTEMD_SUBSTITUTIONS += "KERNEL_MTD:${BMC_KERNEL_MTD}:obmc-flash-bmc-ubiro@.service"
-SYSTEMD_SUBSTITUTIONS += "RW_SIZE:${BMC_RW_SIZE}:obmc-flash-bmc-ubirw.service"
+SYSTEMD_SUBSTITUTIONS_append_df-obmc-ubi-fs += "RW_MTD:${BMC_RW_MTD}:obmc-flash-bmc-ubirw.service"
+SYSTEMD_SUBSTITUTIONS_append_df-obmc-ubi-fs += "RO_MTD:${BMC_RO_MTD}:obmc-flash-bmc-ubiro@.service"
+SYSTEMD_SUBSTITUTIONS_append_df-obmc-ubi-fs += "KERNEL_MTD:${BMC_KERNEL_MTD}:obmc-flash-bmc-ubiro@.service"
+SYSTEMD_SUBSTITUTIONS_append_df-obmc-ubi-fs += "RW_SIZE:${BMC_RW_SIZE}:obmc-flash-bmc-ubirw.service"
 
-SRC_URI += "file://obmc-flash-bmc"
-do_install_append() {
+SRC_URI_append_df-obmc-ubi-fs += "file://obmc-flash-bmc"
+do_install_append_df-obmc-ubi-fs() {
     install -d ${D}${sbindir}
     install -m 0755 ${WORKDIR}/obmc-flash-bmc ${D}${sbindir}/obmc-flash-bmc
     install -d ${D}/usr/local
