@@ -8,11 +8,12 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3bf50002aefd002f49e7bb854063f7e7 \
 
 SECTION = "libs"
 
-DEPENDS = "glib-2.0 gdk-pixbuf-native shared-mime-info"
+DEPENDS = "glib-2.0 gdk-pixbuf-native"
 
 MAJ_VER = "${@oe.utils.trim_version("${PV}", 2)}"
 
 SRC_URI = "${GNOME_MIRROR}/${BPN}/${MAJ_VER}/${BPN}-${PV}.tar.xz \
+           file://disable-gio-sniff.patch \
            file://hardcoded_libtool.patch \
            file://extending-libinstall-dependencies.patch \
            file://run-ptest \
@@ -44,7 +45,7 @@ PACKAGECONFIG[x11] = "--with-x11,--without-x11,virtual/libx11"
 PACKAGES =+ "${PN}-xlib"
 
 # For GIO image type sniffing
-RDEPENDS_${PN} = "shared-mime-info"
+#RDEPENDS_${PN} = "shared-mime-info"
 
 FILES_${PN}-xlib = "${libdir}/*pixbuf_xlib*${SOLIBS}"
 ALLOW_EMPTY_${PN}-xlib = "1"

@@ -12,14 +12,19 @@ PACKAGECONFIG[systemd] = ",,systemd"
 
 RDEPENDS_${PN} += "libpng gtk+ libgcrypt"
 
-inherit distro_features_check autotools binconfig pkgconfig
+#inherit distro_features_check autotools binconfig pkgconfig
+inherit cmake
 
 REQUIRED_DISTRO_FEATURES = "x11"
 
-SRC_URI = "https://github.com/LibVNC/libvncserver/archive/LibVNCServer-${PV}.tar.gz"
-SRC_URI[md5sum] = "7f06104d5c009813e95142932c4ddb06"
-SRC_URI[sha256sum] = "193d630372722a532136fd25c5326b2ca1a636cbb8bf9bb115ef869c804d2894"
+SRC_URI = "git://github.com/LibVNC/libvncserver"
+SRCREV = "${AUTOREV}"
 
-S = "${WORKDIR}/${BPN}-LibVNCServer-${PV}"
+#SRC_URI = "https://github.com/LibVNC/libvncserver/archive/LibVNCServer-${PV}.tar.gz"
+#SRC_URI[md5sum] = "7f06104d5c009813e95142932c4ddb06"
+#SRC_URI[sha256sum] = "193d630372722a532136fd25c5326b2ca1a636cbb8bf9bb115ef869c804d2894"
+
+S = "${WORKDIR}/git"
+#S = "${WORKDIR}/${BPN}-LibVNCServer-${PV}"
 
 TARGET_LDFLAGS += "-lgcrypt"

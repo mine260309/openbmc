@@ -38,7 +38,7 @@ FLASH_UBOOT_OFFSET ?= "0"
 FLASH_KERNEL_OFFSET ?= "512"
 FLASH_UBI_OFFSET ?= "${FLASH_KERNEL_OFFSET}"
 FLASH_ROFS_OFFSET ?= "4864"
-FLASH_RWFS_OFFSET ?= "28672"
+FLASH_RWFS_OFFSET ?= "30720"
 
 # UBI volume sizes in KB unless otherwise noted.
 FLASH_UBI_RWFS_SIZE ?= "6144"
@@ -199,7 +199,8 @@ python do_generate_static() {
     def _append_image(imgpath, start_kb, finish_kb):
         imgsize = os.path.getsize(imgpath)
         if imgsize > (finish_kb - start_kb) * 1024:
-            bb.fatal("Image '%s' is too large!" % imgpath)
+            bb.fatal("Image '%s' is too large!\nImage size: %d, allowed size %d"
+                     % (imgpath, imgsize, (finish_kb - start_kb) * 1024))
 
         subprocess.check_call(['dd', 'bs=1k', 'conv=notrunc',
                                'seek=%d' % start_kb,
