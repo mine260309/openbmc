@@ -1,6 +1,6 @@
-KBRANCH ?= "dev-5.0"
+KBRANCH ?= "dev-ikvm-on-dev-5.0"
 LINUX_VERSION ?= "5.0.7"
 
-SRCREV="b1b37a25644213428f4bab4c427581dd923e35da"
+SRCREV="c0e4860801c331319afb9a2a13697a3bd71fd19c"
 
 require linux-aspeed.inc
