@@ -17,6 +17,7 @@ SRC_URI = "https://github.com/mesonbuild/meson/releases/download/${PV}/meson-${P
            file://0001-modules-python.py-do-not-substitute-python-s-install.patch \
            file://vala-cross-compile.patch \
            file://0001-Fix-missing-return-statements-that-are-seen-with-Wer.patch \
+           file://meson_run_test_for_cross_compiling.patch \
            "
 SRC_URI[sha256sum] = "f27b7a60f339ba66fe4b8f81f0d1072e090a08eabbd6aa287683b2c2b9dd2d82"
 SRC_URI[md5sum] = "48787e391ec5c052799a3dd491f73909"
